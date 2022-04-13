@@ -1,0 +1,14 @@
+FROM docker.io/library/python:3.10.4-bullseye AS build
+EXPOSE 8080
+
+COPY requirements.txt ./requirements.txt
+RUN pip install --no-cache -r requirements.txt
+
+COPY  searx ./searx
+
+#FROM docker.io/library/python:3.10.4-bullseye AS run
+ARG SEARX_GID=977
+ARG SEARX_UID=977
+
+##  TODO:
+#   Add LABEL when fork status is established

@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: searx
+  labels:
+    app: searx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: searx
+  template:
+    metadata:
+      labels:
+        app: searx
+    spec:
+      containers:
+        - name: searx
+          image: ghcr.io/coyote240/searx:latest
+          ports:
+            - containerPort: 8080
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: filtron
+  labels:
+    app: filtron
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: filtron
+  template:
+    metadata:
+      labels:
+        app: filtron
+    spec:
+      containers:
+        - name: filtron
+          image: ghcr.io/coyote240/filtron:latest
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: morty
+  labels:
+    app: morty
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: morty
+  template:
+    metadata:
+      labels:
+        app: morty
+    spec:
+      containers:
+        - name: morty
+          image: ghcr.io/coyote240/morty:latest
